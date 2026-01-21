@@ -1,117 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>tcaw</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-    :root {
-        --neon: #00ff66;
-        --bg: #050505;
-    }
-
-    * {
-        box-sizing: border-box;
-        font-family: "Courier New", monospace;
-    }
-
-    body {
-        margin: 0;
-        height: 100vh;
-        background: radial-gradient(circle at top, #0a0a0a, var(--bg));
-        color: var(--neon);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .container {
-        text-align: center;
-        padding: 2rem;
-    }
-
-    h1 {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        text-shadow:
-            0 0 5px var(--neon),
-            0 0 15px var(--neon),
-            0 0 30px rgba(0,255,102,0.6);
-        letter-spacing: 0.2em;
-    }
-
-    .typewriter {
-        font-size: 1.2rem;
-        min-height: 1.5em;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 2px solid var(--neon);
-        display: inline-block;
-        padding-right: 6px;
-        text-shadow:
-            0 0 6px rgba(0,255,102,0.8);
-        animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-        50% { border-color: transparent; }
-    }
-
-    .glow-line {
-        margin-top: 2rem;
-        width: 120px;
-        height: 2px;
-        background: var(--neon);
-        box-shadow:
-            0 0 8px var(--neon),
-            0 0 16px var(--neon);
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-</head>
-<body>
-
-<div class="container">
-    <h1>tcaw</h1>
-    <div class="typewriter" id="typewriter"></div>
-    <div class="glow-line"></div>
-</div>
-
-<script>
-const texts = [
-    "idk welcome ig",
-    "i put some of my random things here",
-    "patchy and rojo yes cats"
-];
-
-const el = document.getElementById("typewriter");
-let textIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeLoop() {
-    const current = texts[textIndex];
-
-    if (!deleting) {
-        el.textContent = current.slice(0, charIndex++);
-        if (charIndex > current.length) {
-            setTimeout(() => deleting = true, 1200);
-        }
-    } else {
-        el.textContent = current.slice(0, charIndex--);
-        if (charIndex < 0) {
-            deleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            charIndex = 0;
-        }
-    }
-}
-
-setInterval(typeLoop, 80);
-</script>
-
-</body>
+<html>
+    <head>
+        <!--HTML file auto generated using EmulatorJS codehelper-->
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:100%;height:100%;max-width:100%">
+            <div id="game"></div>
+        </div>
+        <script>
+            EJS_player = "#game";
+            EJS_core = "snes";
+            EJS_gameName = "Super Mario World";
+            EJS_color = "#04ff00";
+            EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            EJS_gameUrl = "Super Mario World (U) [!].smc";
+        </script>
+        <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+    </body>
 </html>
