@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tcaw Retro Games</title>
+<link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --neon: #04ff00;
+  --bg: #050805;
+  --card: #0b140b;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0d1a0d, var(--bg));
+  color: var(--neon);
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(4,255,0,0.3);
+}
+
+nav img {
+  width: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(4,255,0,0.6);
+}
+
+nav h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+/* ===== SEARCH ===== */
+.search-wrap {
+  padding: 18px 30px 0;
+}
+
+.search-wrap input {
+  width: 100%;
+  max-width: 420px;
+  background: #020502;
+  color: var(--neon);
+  border: 1px solid rgba(4,255,0,0.4);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: inherit;
+  outline: none;
+  box-shadow: inset 0 0 10px rgba(4,255,0,0.08);
+}
+
+.search-wrap input::placeholder {
+  color: rgba(4,255,0,0.45);
+}
+
+/* ===== GRID ===== */
+.container {
+  padding: 26px 30px 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: linear-gradient(180deg, #0f1d0f, var(--card));
+  border: 1px solid rgba(4,255,0,0.3);
+  border-radius: 16px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 0 18px rgba(4,255,0,0.05);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(4,255,0,0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 1rem;
+  margin: 6px 0;
+}
+
+.card p {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <img src="https://i.ibb.co/WmCg0yY/catstare.png">
+  <h1>Tcaw Retro Games</h1>
+</nav>
+
+<!-- ===== SEARCH ===== -->
+<div class="search-wrap">
+  <input
+    type="text"
+    id="search"
+    placeholder="Search games..."
+    oninput="filterGames()"
+  >
+</div>
+
+<!-- ===== GAME GRID ===== -->
+<div class="container">
+  <div class="grid" id="gameGrid"></div>
+</div>
+
+<script>
+let allGames = [];
+
+fetch("games.json")
+  .then(res => res.json())
+  .then(data => {
+    allGames = data.games;
+    renderGames(allGames);
+  });
+
+function renderGames(games) {
+  const grid = document.getElementById("gameGrid");
+  grid.innerHTML = "";
+
+  games.forEach(game => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => window.location.href = game.url;
+
+    card.innerHTML = `
+      <img src="${game.icon}">
+      <h2>${game.displayName}</h2>
+      <p>${game.description}</p>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function filterGames() {
+  const query = document.getElementById("search").value.toLowerCase();
+
+  const filtered = allGames.filter(game =>
+    game.displayName.toLowerCase().includes(query) ||
+    game.description.toLowerCase().includes(query) ||
+    game.category.toLowerCase().includes(query)
+  );
+
+  renderGames(filtered);
+}
+</script>
+
+</body>
+</html>
