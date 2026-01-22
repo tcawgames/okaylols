@@ -3,11 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Tcaw Retro Games</title>
-
-<!-- Favicon -->
 <link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
@@ -15,10 +12,6 @@
   --neon: #04ff00;
   --bg: #050805;
   --card: #0b140b;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body {
@@ -39,7 +32,6 @@ nav {
 
 nav img {
   width: 36px;
-  height: 36px;
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(4,255,0,0.6);
 }
@@ -129,7 +121,6 @@ nav h1 {
   font-family: "Orbitron", sans-serif;
 }
 
-/* Console colors */
 .console-SNES {
   background: rgba(160, 120, 255, 0.18);
 }
@@ -164,14 +155,27 @@ nav h1 {
 </div>
 
 <script>
-let allGames = [];
-
-fetch("games.json")
-  .then(res => res.json())
-  .then(data => {
-    allGames = data.games;
-    renderGames(allGames);
-  });
+// Manually logged games
+const allGames = [
+  {
+    name: "super-mario-world",
+    displayName: "Super Mario World",
+    icon: "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png",
+    description: "Classic SNES platformer with Yoshi and secret exits",
+    url: "super-mario-world",
+    category: "retro",
+    console: "SNES"
+  },
+  {
+    name: "sonic-the-hedgehog",
+    displayName: "Sonic the Hedgehog",
+    icon: "https://upload.wikimedia.org/wikipedia/en/5/5e/Sonic_the_Hedgehog_1_Genesis_box_art.jpg",
+    description: "High-speed Sega Genesis classic",
+    url: "sonic-the-hedgehog",
+    category: "retro",
+    console: "GENESIS"
+  }
+];
 
 function renderGames(games) {
   const grid = document.getElementById("gameGrid");
@@ -195,6 +199,10 @@ function renderGames(games) {
   });
 }
 
+// Initial render
+renderGames(allGames);
+
+// Search function
 function filterGames() {
   const query = document.getElementById("search").value.toLowerCase();
 
