@@ -17,6 +17,15 @@
       "url": "sonic-the-hedgehog",
       "category": "retro",
       "console": "GENESIS"
+    },
+    {
+      "name": "super-mario-bros-3",
+      "displayName": "Super Mario Bros. 3",
+      "icon": "https://upload.wikimedia.org/wikipedia/en/5/50/Super_Mario_Bros_3.jpg",
+      "description": "NES platformer with world map, power-ups, and secret paths",
+      "url": "super-mario-bros-3",
+      "category": "retro",
+      "console": "NES"
     }
   ]
 }
