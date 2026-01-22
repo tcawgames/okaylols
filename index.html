@@ -169,7 +169,6 @@ nav .menu a:hover {
   font-family: "Orbitron", sans-serif;
 }
 
-/* Console colors */
 .console-SNES { background: rgba(160,120,255,0.18); }
 .console-GENESIS { background: rgba(0,180,255,0.18); }
 .console-NES { background: rgba(255,160,0,0.18); }
@@ -205,12 +204,7 @@ footer {
 
 <!-- ===== SEARCH ===== -->
 <div class="search-wrap">
-  <input
-    type="text"
-    id="search"
-    placeholder="Search games..."
-    oninput="filterGames()"
-  >
+  <input type="text" id="search" placeholder="Search games..." oninput="filterGames()">
 </div>
 
 <!-- ===== CATEGORY FILTER ===== -->
@@ -227,77 +221,30 @@ footer {
 </footer>
 
 <script>
-// Manually logged games
-const allGames = [
-  {
-    name: "super-mario-world",
-    displayName: "Super Mario World",
-    icon: "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png",
-    description: "Classic SNES platformer with Yoshi and secret exits",
-    url: "super-mario-world.html",
-    category: "Platformer",
-    console: "SNES"
-  },
-  {
-    name: "sonic-the-hedgehog",
-    displayName: "Sonic the Hedgehog",
-    icon: "https://upload.wikimedia.org/wikipedia/en/5/5e/Sonic_the_Hedgehog_1_Genesis_box_art.jpg",
-    description: "High-speed Sega Genesis classic",
-    url: "sonic-the-hedgehog.html",
-    category: "Platformer",
-    console: "GENESIS"
-  },
-  {
-    name: "tetris",
-    displayName: "Tetris",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Tetris_Gameboy.png",
-    description: "Stack falling blocks to clear lines",
-    url: "tetris.html",
-    category: "Puzzle",
-    console: "GB"
-  },
-  {
-    name: "pac-man",
-    displayName: "Pac-Man",
-    icon: "https://upload.wikimedia.org/wikipedia/en/5/59/Pac-Man.png",
-    description: "Classic arcade maze-chase game",
-    url: "pacman.html",
-    category: "Arcade",
-    console: "ARCADE"
-  },
-  {
-    name: "mario-kart",
-    displayName: "Mario Kart",
-    icon: "https://upload.wikimedia.org/wikipedia/en/e/e0/Mario_Kart_SNES.png",
-    description: "Fun SNES racing game",
-    url: "mario-kart.html",
-    category: "Racing",
-    console: "SNES"
-  },
-  {
-    name: "mega-man",
-    displayName: "Mega Man",
-    icon: "https://upload.wikimedia.org/wikipedia/en/4/4c/Mega_Man_2_NES_box_art.jpg",
-    description: "Challenging NES action platformer",
-    url: "mega-man.html",
-    category: "Action",
-    console: "NES"
-  }
-];
-
-// Generate unique categories
-const categories = [...new Set(allGames.map(g => g.category))];
+// Load games.json dynamically
+let allGames = [];
+fetch("games.json")
+  .then(res => res.json())
+  .then(data => {
+    allGames = data.games;
+    renderCategories(allGames);
+    renderGames(allGames);
+  })
+  .catch(err => console.error("Failed to load games.json:", err));
 
 // Render category buttons
-const categoryFilterDiv = document.getElementById("categoryFilter");
-categories.forEach(cat => {
-  const btn = document.createElement("button");
-  btn.textContent = cat;
-  btn.onclick = () => filterByCategory(cat);
-  categoryFilterDiv.appendChild(btn);
-});
+function renderCategories(games) {
+  const categoryFilterDiv = document.getElementById("categoryFilter");
+  const categories = [...new Set(games.map(g => g.category))];
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat;
+    btn.onclick = () => filterByCategory(cat);
+    categoryFilterDiv.appendChild(btn);
+  });
+}
 
-// Render games
+// Render game cards
 function renderGames(games) {
   const grid = document.getElementById("gameGrid");
   grid.innerHTML = "";
@@ -320,28 +267,22 @@ function renderGames(games) {
   });
 }
 
-// Initial render
-renderGames(allGames);
-
 // Search function
 function filterGames() {
   const query = document.getElementById("search").value.toLowerCase();
-
   const filtered = allGames.filter(game =>
     game.displayName.toLowerCase().includes(query) ||
     game.description.toLowerCase().includes(query) ||
     game.category.toLowerCase().includes(query) ||
     game.console.toLowerCase().includes(query)
   );
-
   renderGames(filtered);
 }
 
-// Filter by category
+// Category filter
 function filterByCategory(category) {
   const filtered = allGames.filter(game => game.category === category);
   renderGames(filtered);
-  // Highlight active button
   document.querySelectorAll('.category-filter button').forEach(b => {
     b.classList.toggle('active', b.textContent === category);
   });
