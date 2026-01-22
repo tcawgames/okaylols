@@ -15,45 +15,61 @@
   --neon: #04ff00;
   --bg: #050805;
   --card: #0b140b;
+  --hover: rgba(4,255,0,0.5);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
+  font-family: "JetBrains Mono", monospace;
   background: radial-gradient(circle at top, #0d1a0d, var(--bg));
   color: var(--neon);
-  font-family: "JetBrains Mono", monospace;
 }
 
 /* ===== NAVBAR ===== */
 nav {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
   padding: 14px 20px;
   border-bottom: 1px solid rgba(4,255,0,0.3);
+}
+
+nav .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 nav img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(4,255,0,0.6);
+  box-shadow: 0 0 12px var(--neon);
 }
 
 nav h1 {
   font-family: "Orbitron", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
-  margin: 0;
+}
+
+nav .menu a {
+  margin-left: 16px;
+  font-family: "Orbitron", sans-serif;
+  color: var(--neon);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+nav .menu a:hover {
+  color: var(--hover);
+  text-shadow: 0 0 8px var(--neon);
 }
 
 /* ===== SEARCH ===== */
 .search-wrap {
-  padding: 18px 30px 0;
+  padding: 20px 30px 0;
 }
 
 .search-wrap input {
@@ -73,9 +89,33 @@ nav h1 {
   color: rgba(4,255,0,0.45);
 }
 
+/* ===== CATEGORY FILTER ===== */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 30px;
+}
+
+.category-filter button {
+  background: #020502;
+  color: var(--neon);
+  border: 1px solid rgba(4,255,0,0.3);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.category-filter button:hover, .category-filter button.active {
+  background: rgba(4,255,0,0.1);
+  box-shadow: 0 0 8px var(--neon);
+}
+
 /* ===== GRID ===== */
 .container {
-  padding: 26px 30px 40px;
+  padding: 20px 30px 40px;
 }
 
 .grid {
@@ -130,12 +170,19 @@ nav h1 {
 }
 
 /* Console colors */
-.console-SNES {
-  background: rgba(160, 120, 255, 0.18);
-}
+.console-SNES { background: rgba(160,120,255,0.18); }
+.console-GENESIS { background: rgba(0,180,255,0.18); }
+.console-NES { background: rgba(255,160,0,0.18); }
+.console-GB { background: rgba(0,255,255,0.18); }
+.console-ARCADE { background: rgba(255,0,255,0.18); }
 
-.console-GENESIS {
-  background: rgba(0, 180, 255, 0.18);
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  border-top: 1px solid rgba(4,255,0,0.2);
 }
 </style>
 </head>
@@ -144,8 +191,16 @@ nav h1 {
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="logo">
-  <h1>Tcaw Retro Games</h1>
+  <div class="left">
+    <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="logo">
+    <h1>Tcaw Retro Games</h1>
+  </div>
+  <div class="menu">
+    <a href="#">Home</a>
+    <a href="#">Top Games</a>
+    <a href="#">New Releases</a>
+    <a href="#">Categories</a>
+  </div>
 </nav>
 
 <!-- ===== SEARCH ===== -->
@@ -158,21 +213,91 @@ nav h1 {
   >
 </div>
 
+<!-- ===== CATEGORY FILTER ===== -->
+<div class="category-filter" id="categoryFilter"></div>
+
 <!-- ===== GAME GRID ===== -->
 <div class="container">
   <div class="grid" id="gameGrid"></div>
 </div>
 
+<!-- ===== FOOTER ===== -->
+<footer>
+  Tcaw Retro Games • tcaw.live • All rights reserved
+</footer>
+
 <script>
-let allGames = [];
+// Manually logged games
+const allGames = [
+  {
+    name: "super-mario-world",
+    displayName: "Super Mario World",
+    icon: "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png",
+    description: "Classic SNES platformer with Yoshi and secret exits",
+    url: "super-mario-world.html",
+    category: "Platformer",
+    console: "SNES"
+  },
+  {
+    name: "sonic-the-hedgehog",
+    displayName: "Sonic the Hedgehog",
+    icon: "https://upload.wikimedia.org/wikipedia/en/5/5e/Sonic_the_Hedgehog_1_Genesis_box_art.jpg",
+    description: "High-speed Sega Genesis classic",
+    url: "sonic-the-hedgehog.html",
+    category: "Platformer",
+    console: "GENESIS"
+  },
+  {
+    name: "tetris",
+    displayName: "Tetris",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Tetris_Gameboy.png",
+    description: "Stack falling blocks to clear lines",
+    url: "tetris.html",
+    category: "Puzzle",
+    console: "GB"
+  },
+  {
+    name: "pac-man",
+    displayName: "Pac-Man",
+    icon: "https://upload.wikimedia.org/wikipedia/en/5/59/Pac-Man.png",
+    description: "Classic arcade maze-chase game",
+    url: "pacman.html",
+    category: "Arcade",
+    console: "ARCADE"
+  },
+  {
+    name: "mario-kart",
+    displayName: "Mario Kart",
+    icon: "https://upload.wikimedia.org/wikipedia/en/e/e0/Mario_Kart_SNES.png",
+    description: "Fun SNES racing game",
+    url: "mario-kart.html",
+    category: "Racing",
+    console: "SNES"
+  },
+  {
+    name: "mega-man",
+    displayName: "Mega Man",
+    icon: "https://upload.wikimedia.org/wikipedia/en/4/4c/Mega_Man_2_NES_box_art.jpg",
+    description: "Challenging NES action platformer",
+    url: "mega-man.html",
+    category: "Action",
+    console: "NES"
+  }
+];
 
-fetch("games.json")
-  .then(res => res.json())
-  .then(data => {
-    allGames = data.games;
-    renderGames(allGames);
-  });
+// Generate unique categories
+const categories = [...new Set(allGames.map(g => g.category))];
 
+// Render category buttons
+const categoryFilterDiv = document.getElementById("categoryFilter");
+categories.forEach(cat => {
+  const btn = document.createElement("button");
+  btn.textContent = cat;
+  btn.onclick = () => filterByCategory(cat);
+  categoryFilterDiv.appendChild(btn);
+});
+
+// Render games
 function renderGames(games) {
   const grid = document.getElementById("gameGrid");
   grid.innerHTML = "";
@@ -195,6 +320,10 @@ function renderGames(games) {
   });
 }
 
+// Initial render
+renderGames(allGames);
+
+// Search function
 function filterGames() {
   const query = document.getElementById("search").value.toLowerCase();
 
@@ -206,6 +335,16 @@ function filterGames() {
   );
 
   renderGames(filtered);
+}
+
+// Filter by category
+function filterByCategory(category) {
+  const filtered = allGames.filter(game => game.category === category);
+  renderGames(filtered);
+  // Highlight active button
+  document.querySelectorAll('.category-filter button').forEach(b => {
+    b.classList.toggle('active', b.textContent === category);
+  });
 }
 </script>
 
