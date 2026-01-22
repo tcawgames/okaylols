@@ -39,29 +39,16 @@ nav {
   background: rgba(5,8,5,0.85);
   backdrop-filter: blur(6px);
 }
-.nav-left { display: flex; align-items: center; gap: 12px; }
+.nav-left { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .nav-left img { width: 36px; border-radius: 50%; box-shadow: 0 0 12px rgba(17,255,0,0.6); }
 .nav-left span { font-family: "Orbitron", sans-serif; letter-spacing: 2px; font-size: 1.2rem; }
-.nav-right button {
-  background: transparent; 
-  color: var(--neon); 
-  border: 1px solid rgba(17,255,0,0.4);
-  padding: 6px 12px; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  font-family: inherit; 
-  transition: 0.2s;
-}
-.nav-right button:hover {
-  background: rgba(17,255,0,0.12); 
-  box-shadow: 0 0 12px rgba(17,255,0,0.5);
-}
 
 /* ===== MAIN CONTENT ===== */
 .main { display: flex; justify-content: center; align-items: center; padding: 20px; height: calc(100% - 64px); }
 
 .game-shell {
-  width: 100%; max-width: 960px; background: linear-gradient(180deg, var(--panel-alt), var(--panel));
+  width: 100%; max-width: 960px; 
+  background: linear-gradient(180deg, var(--panel-alt), var(--panel));
   border-radius: 16px; border: 1px solid rgba(17,255,0,0.35);
   box-shadow: 0 0 25px rgba(17,255,0,0.2), inset 0 0 18px rgba(17,255,0,0.05);
   padding: 14px;
@@ -102,12 +89,12 @@ nav {
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <div class="nav-left">
+  <div class="nav-left" onclick="goHome()">
     <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="Tcaw">
     <span>Tcaw Retro Games</span>
   </div>
   <div class="nav-right">
-    <button onclick="goHome()">Home</button>
+    <!-- Home button removed -->
   </div>
 </nav>
 
@@ -134,7 +121,7 @@ function goHome() {
   EJS_color = "#11ff00";
   EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
   EJS_gameUrl = "roms/smb3.nes"; // Replace with your ROM file
-  // EJS_biosUrl optional for NES if needed
+  // No BIOS needed for NES
 </script>
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 
