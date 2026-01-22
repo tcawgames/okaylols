@@ -30,7 +30,7 @@
     {
       "name": "super-mario-bros",
       "displayName": "Super Mario Bros.",
-      "icon": "https://upload.wikimedia.org/wikipedia/en/5/5d/Super_Mario_Bros._box.png",
+      "icon": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png",
       "description": "Original NES classic platformer with Mario and Luigi",
       "url": "super-mario-bros",
       "category": "retro",
