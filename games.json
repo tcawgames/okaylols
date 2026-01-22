@@ -26,6 +26,15 @@
       "url": "super-mario-bros-3",
       "category": "retro",
       "console": "NES"
+    },
+    {
+      "name": "super-mario-bros",
+      "displayName": "Super Mario Bros.",
+      "icon": "https://upload.wikimedia.org/wikipedia/en/5/5d/Super_Mario_Bros._box.png",
+      "description": "Original NES classic platformer with Mario and Luigi",
+      "url": "super-mario-bros",
+      "category": "retro",
+      "console": "NES"
     }
   ]
 }
