@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -43,11 +43,18 @@ nav {
 .nav-left img { width: 36px; border-radius: 50%; box-shadow: 0 0 12px rgba(43,255,0,0.6); }
 .nav-left span { font-family: "Orbitron", sans-serif; letter-spacing: 2px; font-size: 1.2rem; }
 .nav-right button {
-  background: transparent; color: var(--neon); border: 1px solid rgba(43,255,0,0.4);
-  padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: inherit; transition: 0.2s;
+  background: transparent; 
+  color: var(--neon); 
+  border: 1px solid rgba(43,255,0,0.4);
+  padding: 6px 12px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-family: inherit; 
+  transition: 0.2s;
 }
 .nav-right button:hover {
-  background: rgba(43,255,0,0.12); box-shadow: 0 0 12px rgba(43,255,0,0.5);
+  background: rgba(43,255,0,0.12); 
+  box-shadow: 0 0 12px rgba(43,255,0,0.5);
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -100,9 +107,15 @@ nav {
     <span>Tcaw Retro Games</span>
   </div>
   <div class="nav-right">
-    <button onclick="toggleFullscreen()">Fullscreen</button>
+    <button onclick="goHome()">Home</button>
   </div>
 </nav>
+
+<script>
+function goHome() {
+  window.location.href = "https://tcaw.live";
+}
+</script>
 
 <!-- ===== MAIN CONTENT ===== -->
 <div class="main">
@@ -123,18 +136,6 @@ nav {
   EJS_gameUrl = "roms/smw.smc";
 </script>
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
-
-<!-- ===== Fullscreen ===== -->
-<script>
-function toggleFullscreen() {
-  const el = document.getElementById("gameShell");
-  if (!document.fullscreenElement) {
-    el.requestFullscreen().catch(err => { alert("Fullscreen failed: " + err.message); });
-  } else {
-    document.exitFullscreen();
-  }
-}
-</script>
 
 <!-- ===== Corner Ad ===== -->
 <div class="ad-corner">
