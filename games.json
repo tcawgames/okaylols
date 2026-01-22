@@ -5,7 +5,7 @@
       "displayName": "Super Mario World",
       "icon": "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png",
       "description": "Classic SNES platformer with Yoshi and secret exits",
-      "url": "super-mario-world.html",
+      "url": "super-mario-world",
       "category": "retro",
       "console": "SNES"
     },
@@ -14,7 +14,7 @@
       "displayName": "Sonic the Hedgehog",
       "icon": "https://upload.wikimedia.org/wikipedia/en/5/5e/Sonic_the_Hedgehog_1_Genesis_box_art.jpg",
       "description": "High-speed Sega Genesis classic",
-      "url": "sonic-the-hedgehog.html",
+      "url": "sonic-the-hedgehog",
       "category": "retro",
       "console": "GENESIS"
     }
