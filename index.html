@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Tcaw Retro Games</title>
+
+<!-- Favicon -->
 <link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
@@ -12,6 +15,10 @@
   --neon: #04ff00;
   --bg: #050805;
   --card: #0b140b;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -32,6 +39,7 @@ nav {
 
 nav img {
   width: 36px;
+  height: 36px;
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(4,255,0,0.6);
 }
@@ -40,6 +48,7 @@ nav h1 {
   font-family: "Orbitron", sans-serif;
   font-size: 1.3rem;
   letter-spacing: 2px;
+  margin: 0;
 }
 
 /* ===== SEARCH ===== */
@@ -106,6 +115,28 @@ nav h1 {
   font-size: 0.75rem;
   opacity: 0.75;
 }
+
+/* ===== CONSOLE TAG ===== */
+.console-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 4px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(4,255,0,0.5);
+  box-shadow: 0 0 8px rgba(4,255,0,0.35);
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Console colors */
+.console-SNES {
+  background: rgba(160, 120, 255, 0.18);
+}
+
+.console-GENESIS {
+  background: rgba(0, 180, 255, 0.18);
+}
 </style>
 </head>
 
@@ -113,7 +144,7 @@ nav h1 {
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <img src="https://i.ibb.co/WmCg0yY/catstare.png">
+  <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="logo">
   <h1>Tcaw Retro Games</h1>
 </nav>
 
@@ -152,7 +183,10 @@ function renderGames(games) {
     card.onclick = () => window.location.href = game.url;
 
     card.innerHTML = `
-      <img src="${game.icon}">
+      <span class="console-tag console-${game.console}">
+        ${game.console}
+      </span>
+      <img src="${game.icon}" alt="${game.displayName}">
       <h2>${game.displayName}</h2>
       <p>${game.description}</p>
     `;
@@ -167,7 +201,8 @@ function filterGames() {
   const filtered = allGames.filter(game =>
     game.displayName.toLowerCase().includes(query) ||
     game.description.toLowerCase().includes(query) ||
-    game.category.toLowerCase().includes(query)
+    game.category.toLowerCase().includes(query) ||
+    game.console.toLowerCase().includes(query)
   );
 
   renderGames(filtered);
