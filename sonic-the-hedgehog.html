@@ -20,7 +20,14 @@
 
 /* ===== Reset & Body ===== */
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; height: 100%; font-family: "JetBrains Mono", monospace; background: radial-gradient(circle at top, #0d1a0d, var(--bg)); color: var(--neon); }
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  height: 100%; 
+  font-family: "JetBrains Mono", monospace; 
+  background: radial-gradient(circle at top, #0d1a0d, var(--bg)); 
+  color: var(--neon); 
+}
 
 /* ===== NAVBAR ===== */
 nav {
@@ -32,7 +39,6 @@ nav {
   background: rgba(5,8,5,0.85);
   backdrop-filter: blur(6px);
 }
-
 .nav-left { display: flex; align-items: center; gap: 12px; }
 .nav-left img { width: 36px; border-radius: 50%; box-shadow: 0 0 12px rgba(43,255,0,0.6); }
 .nav-left span { font-family: "Orbitron", sans-serif; letter-spacing: 2px; font-size: 1.2rem; }
@@ -110,11 +116,11 @@ nav {
 <!-- ===== EmulatorJS ===== -->
 <script>
   EJS_player = "#game";
-  EJS_core = "segaMD";   // Use "snes" for Super Mario World
-  EJS_gameName = "Sonic the Hedgehog";  // Change per game
+  EJS_core = "segaMD";   // Sega Genesis / Mega Drive
+  EJS_gameName = "Sonic the Hedgehog";
   EJS_color = "#2bff00";
   EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-  EJS_gameUrl = "roms/sonic1.md"; // Change to your ROM
+  EJS_gameUrl = "roms/sonic1.md"; // Change to your ROM file
 </script>
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 
