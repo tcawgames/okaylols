@@ -39,23 +39,9 @@ nav {
   background: rgba(5,8,5,0.85);
   backdrop-filter: blur(6px);
 }
-.nav-left { display: flex; align-items: center; gap: 12px; }
+.nav-left { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .nav-left img { width: 36px; border-radius: 50%; box-shadow: 0 0 12px rgba(43,255,0,0.6); }
 .nav-left span { font-family: "Orbitron", sans-serif; letter-spacing: 2px; font-size: 1.2rem; }
-.nav-right button {
-  background: transparent; 
-  color: var(--neon); 
-  border: 1px solid rgba(43,255,0,0.4);
-  padding: 6px 12px; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  font-family: inherit; 
-  transition: 0.2s;
-}
-.nav-right button:hover {
-  background: rgba(43,255,0,0.12); 
-  box-shadow: 0 0 12px rgba(43,255,0,0.5);
-}
 
 /* ===== MAIN CONTENT ===== */
 .main { 
@@ -117,12 +103,12 @@ nav {
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <div class="nav-left">
+  <div class="nav-left" onclick="goHome()">
     <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="Tcaw">
     <span>Tcaw Retro Games (BETA)</span>
   </div>
   <div class="nav-right">
-    <button onclick="goHome()">Home</button>
+    <!-- Home button removed -->
   </div>
 </nav>
 
