@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <title>Tcaw Retro Games</title>
 
-<!-- Favicon -->
 <link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
@@ -15,280 +13,269 @@
   --neon: #04ff00;
   --bg: #050805;
   --card: #0b140b;
-  --hover: rgba(4,255,0,0.5);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
 
 body {
+  margin: 0;
   font-family: "JetBrains Mono", monospace;
   background: radial-gradient(circle at top, #0d1a0d, var(--bg));
   color: var(--neon);
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAV ===== */
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   padding: 14px 20px;
   border-bottom: 1px solid rgba(4,255,0,0.3);
 }
 
-nav .left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 nav img {
-  width: 36px;
-  height: 36px;
+  width: 34px;
   border-radius: 50%;
-  box-shadow: 0 0 12px var(--neon);
+  box-shadow: 0 0 10px var(--neon);
 }
 
 nav h1 {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
+  font-family: Orbitron;
+  font-size: 1.2rem;
 }
 
-nav .menu a {
-  margin-left: 16px;
-  font-family: "Orbitron", sans-serif;
-  color: var(--neon);
-  text-decoration: none;
-  transition: 0.2s;
+/* ===== CONSOLE SELECT ===== */
+.console-select {
+  padding: 28px;
+  text-align: center;
 }
 
-nav .menu a:hover {
-  color: var(--hover);
-  text-shadow: 0 0 8px var(--neon);
+.console-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
 }
 
-/* ===== SEARCH ===== */
-.search-wrap {
-  padding: 20px 30px 0;
-}
-
-.search-wrap input {
-  width: 100%;
-  max-width: 420px;
-  background: #020502;
-  color: var(--neon);
-  border: 1px solid rgba(4,255,0,0.4);
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-family: inherit;
-  outline: none;
-  box-shadow: inset 0 0 10px rgba(4,255,0,0.08);
-}
-
-.search-wrap input::placeholder {
-  color: rgba(4,255,0,0.45);
-}
-
-/* ===== CATEGORY FILTER ===== */
-.category-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 14px 30px;
-}
-
-.category-filter button {
-  background: #020502;
-  color: var(--neon);
-  border: 1px solid rgba(4,255,0,0.3);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-family: "Orbitron", sans-serif;
+.console-card {
+  background: linear-gradient(180deg, #0f1d0f, var(--card));
+  border-radius: 16px;
+  padding: 12px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.25s;
+  box-shadow: inset 0 0 14px rgba(4,255,0,0.1);
 }
 
-.category-filter button:hover, .category-filter button.active {
-  background: rgba(4,255,0,0.1);
-  box-shadow: 0 0 8px var(--neon);
+.console-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 28px rgba(4,255,0,0.6);
+}
+
+.console-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.console-card span {
+  display: block;
+  margin-top: 8px;
+  font-family: Orbitron;
+}
+
+/* ===== SEARCH + FILTERS ===== */
+.controls {
+  display: none;
+  padding: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.controls input {
+  flex: 1;
+  padding: 10px;
+  background: #020502;
+  border: 1px solid rgba(4,255,0,0.4);
+  color: var(--neon);
+  border-radius: 10px;
+}
+
+.controls button {
+  padding: 8px 12px;
+  background: #020502;
+  color: var(--neon);
+  border-radius: 8px;
+  border: 1px solid rgba(4,255,0,0.3);
+  cursor: pointer;
+}
+
+.controls button.active {
+  box-shadow: 0 0 10px var(--neon);
 }
 
 /* ===== GRID ===== */
-.container {
-  padding: 20px 30px 40px;
-}
-
 .grid {
+  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-/* ===== CARD ===== */
+/* ===== GAME CARD ===== */
 .card {
   background: linear-gradient(180deg, #0f1d0f, var(--card));
-  border: 1px solid rgba(4,255,0,0.3);
   border-radius: 16px;
-  padding: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: inset 0 0 18px rgba(4,255,0,0.05);
+  padding: 12px;
+  transition: 0.2s;
+  position: relative;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 22px rgba(4,255,0,0.4);
+  box-shadow: 0 0 22px rgba(4,255,0,0.5);
 }
 
 .card img {
   width: 100%;
   border-radius: 12px;
-  margin-bottom: 10px;
 }
 
-.card h2 {
-  font-size: 1rem;
-  margin: 6px 0;
+.favorite {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-.card p {
-  font-size: 0.75rem;
-  opacity: 0.75;
+.favorite.active {
+  color: gold;
+  text-shadow: 0 0 10px gold;
 }
 
-/* ===== CONSOLE TAG ===== */
 .console-tag {
-  display: inline-block;
   font-size: 0.65rem;
-  padding: 4px 9px;
+  padding: 4px 8px;
   border-radius: 999px;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
   border: 1px solid rgba(4,255,0,0.5);
-  box-shadow: 0 0 8px rgba(4,255,0,0.35);
-  font-family: "Orbitron", sans-serif;
+  display: inline-block;
+  margin: 6px 0;
+  font-family: Orbitron;
 }
 
-.console-SNES { background: rgba(160,120,255,0.18); }
-.console-GENESIS { background: rgba(0,180,255,0.18); }
-.console-NES { background: rgba(255,160,0,0.18); }
-.console-GB { background: rgba(0,255,255,0.18); }
-.console-ARCADE { background: rgba(255,0,255,0.18); }
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.75rem;
-  opacity: 0.6;
-  border-top: 1px solid rgba(4,255,0,0.2);
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  nav h1 { font-size: 1rem; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
 <nav>
-  <div class="left">
-    <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="logo">
-    <h1>Tcaw Retro Games (BETA TEST v1)</h1>
-  </div>
-  <div class="menu">
-    <a href="#">Home</a>
-    <a href="#">Top Games</a>
-    <a href="#">New Releases</a>
-    <a href="#">Categories</a>
-  </div>
+  <img src="https://i.ibb.co/WmCg0yY/catstare.png">
+  <h1>Tcaw Retro Games</h1>
 </nav>
 
-<!-- ===== SEARCH ===== -->
-<div class="search-wrap">
-  <input type="text" id="search" placeholder="Search games..." oninput="filterGames()">
+<audio id="startupSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5f32b6b3b6.mp3"></audio>
+
+<div class="console-select" id="consoleSelect">
+  <h2>Choose Your Console</h2>
+  <div class="console-grid">
+    <div class="console-card" onclick="selectConsole('ALL')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Gamepad_icon.svg">
+      <span>All Games</span>
+    </div>
+    <div class="console-card" onclick="selectConsole('NES')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/NES-Console-Set.png">
+      <span>NES</span>
+    </div>
+    <div class="console-card" onclick="selectConsole('SNES')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/SNES-Mod1-Console-Set.png">
+      <span>SNES</span>
+    </div>
+    <div class="console-card" onclick="selectConsole('GENESIS')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Sega-Genesis-Mk2-Console-Set.png">
+      <span>Genesis</span>
+    </div>
+    <div class="console-card" onclick="selectConsole('ARCADE')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Arcade_machine.svg">
+      <span>Arcade</span>
+    </div>
+  </div>
 </div>
 
-<!-- ===== CATEGORY FILTER ===== -->
-<div class="category-filter" id="categoryFilter"></div>
-
-<!-- ===== GAME GRID ===== -->
-<div class="container">
-  <div class="grid" id="gameGrid"></div>
+<div class="controls" id="controls">
+  <input placeholder="Search games..." oninput="filterGames(this.value)">
+  <button onclick="showAll()">All</button>
+  <button onclick="showFavorites()">⭐ Favorites</button>
 </div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  Tcaw Retro Games • tcaw.live • All rights reserved
-</footer>
+<div class="grid" id="gameGrid"></div>
 
 <script>
-// Load games.json dynamically
-let allGames = [];
-fetch("games.json")
-  .then(res => res.json())
-  .then(data => {
-    allGames = data.games;
-    renderCategories(allGames);
-    renderGames(allGames);
-  })
-  .catch(err => console.error("Failed to load games.json:", err));
+let games = [];
+let activeConsole = localStorage.getItem("console") || null;
+let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
-// Render category buttons
-function renderCategories(games) {
-  const categoryFilterDiv = document.getElementById("categoryFilter");
-  const categories = [...new Set(games.map(g => g.category))];
-  categories.forEach(cat => {
-    const btn = document.createElement("button");
-    btn.textContent = cat;
-    btn.onclick = () => filterByCategory(cat);
-    categoryFilterDiv.appendChild(btn);
+fetch("games.json")
+  .then(r => r.json())
+  .then(d => {
+    games = d.games;
+    if (activeConsole) selectConsole(activeConsole, true);
   });
+
+function selectConsole(c, silent=false) {
+  activeConsole = c;
+  localStorage.setItem("console", c);
+  document.getElementById("consoleSelect").style.display = "none";
+  document.getElementById("controls").style.display = "flex";
+  if (!silent) document.getElementById("startupSound").play();
+  render();
 }
 
-// Render game cards
-function renderGames(games) {
+function render(list = games) {
   const grid = document.getElementById("gameGrid");
   grid.innerHTML = "";
-
-  games.forEach(game => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.onclick = () => window.location.href = game.url;
-
-    card.innerHTML = `
-      <span class="console-tag console-${game.console}">
-        ${game.console}
-      </span>
-      <img src="${game.icon}" alt="${game.displayName}">
-      <h2>${game.displayName}</h2>
-      <p>${game.description}</p>
+  list.filter(g => activeConsole==="ALL" || g.console===activeConsole)
+      .forEach(g => {
+    const fav = favorites.includes(g.name);
+    const d = document.createElement("div");
+    d.className = "card";
+    d.innerHTML = `
+      <div class="favorite ${fav?'active':''}" onclick="toggleFav(event,'${g.name}')">♥</div>
+      <span class="console-tag">${g.console}</span>
+      <img src="${g.icon}">
+      <h3>${g.displayName}</h3>
+      <p>${g.description}</p>
     `;
-
-    grid.appendChild(card);
+    d.onclick = e => { if(!e.target.classList.contains("favorite")) location.href=g.url };
+    grid.appendChild(d);
   });
 }
 
-// Search function
-function filterGames() {
-  const query = document.getElementById("search").value.toLowerCase();
-  const filtered = allGames.filter(game =>
-    game.displayName.toLowerCase().includes(query) ||
-    game.description.toLowerCase().includes(query) ||
-    game.category.toLowerCase().includes(query) ||
-    game.console.toLowerCase().includes(query)
-  );
-  renderGames(filtered);
+function filterGames(q) {
+  q=q.toLowerCase();
+  render(games.filter(g =>
+    g.displayName.toLowerCase().includes(q) ||
+    g.description.toLowerCase().includes(q)
+  ));
 }
 
-// Category filter
-function filterByCategory(category) {
-  const filtered = allGames.filter(game => game.category === category);
-  renderGames(filtered);
-  document.querySelectorAll('.category-filter button').forEach(b => {
-    b.classList.toggle('active', b.textContent === category);
-  });
+function toggleFav(e,name){
+  e.stopPropagation();
+  favorites.includes(name)
+    ? favorites=favorites.filter(f=>f!==name)
+    : favorites.push(name);
+  localStorage.setItem("favorites",JSON.stringify(favorites));
+  render();
 }
+
+function showFavorites(){
+  render(games.filter(g=>favorites.includes(g.name)));
+}
+
+function showAll(){ render(); }
 </script>
 
 </body>
 </html>
-
