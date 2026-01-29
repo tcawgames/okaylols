@@ -77,10 +77,16 @@ nav h1 {
   box-shadow: 0 0 22px rgba(4,255,0,0.4);
 }
 
-.console-icon {
-  font-size: 3.2rem;
+.console-icon img {
+  width: 120px;
+  max-width: 100%;
   margin-bottom: 12px;
-  filter: drop-shadow(0 0 12px rgba(4,255,0,0.5));
+  filter: drop-shadow(0 0 12px rgba(4,255,0,0.45));
+}
+
+.console-icon {
+  display: flex;
+  justify-content: center;
 }
 
 .console-card span {
@@ -183,17 +189,23 @@ nav h1 {
     </div>
 
     <div class="console-card" onclick="selectConsole('NES')">
-      <div class="console-icon">🟥</div>
+      <div class="console-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/NES-Console-Set.png" alt="NES">
+      </div>
       <span>NES</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('SNES')">
-      <div class="console-icon">🟪</div>
+      <div class="console-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SNES-Mod1-Console-Set.png" alt="SNES">
+      </div>
       <span>Super Nintendo</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('GENESIS')">
-      <div class="console-icon">🔵</div>
+      <div class="console-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Sega-Genesis-Mod1-Set.png" alt="Genesis">
+      </div>
       <span>Sega Genesis</span>
     </div>
 
