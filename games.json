@@ -35,6 +35,15 @@
       "url": "super-mario-bros",
       "category": "retro",
       "console": "NES"
+    },
+    {
+      "name": "dig-dug",
+      "displayName": "Dig Dug",
+      "icon": "https://upload.wikimedia.org/wikipedia/en/6/6f/Dig_Dug_arcade_flyer.jpg",
+      "description": "Classic Namco arcade digging and monster-popping action",
+      "url": "dig-dug",
+      "category": "retro",
+      "console": "ARCADE"
     }
   ]
 }
