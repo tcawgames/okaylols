@@ -5,7 +5,6 @@
 <title>Tcaw Retro Games</title>
 
 <link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
@@ -15,16 +14,15 @@
   --card: #0b140b;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
   font-family: "JetBrains Mono", monospace;
   background: radial-gradient(circle at top, #0d1a0d, var(--bg));
   color: var(--neon);
 }
 
-/* ===== NAV ===== */
+/* ===== NAVBAR ===== */
 nav {
   display: flex;
   align-items: center;
@@ -34,137 +32,143 @@ nav {
 }
 
 nav img {
-  width: 34px;
+  width: 36px;
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--neon);
+  box-shadow: 0 0 12px var(--neon);
 }
 
 nav h1 {
-  font-family: Orbitron;
-  font-size: 1.2rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
 }
 
 /* ===== CONSOLE SELECT ===== */
 .console-select {
-  padding: 28px;
   text-align: center;
+  padding: 40px 20px;
+}
+
+.console-select h2 {
+  font-family: "Orbitron", sans-serif;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
 }
 
 .console-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .console-card {
   background: linear-gradient(180deg, #0f1d0f, var(--card));
+  border: 1px solid rgba(4,255,0,0.3);
   border-radius: 16px;
-  padding: 12px;
+  padding: 16px;
   cursor: pointer;
-  transition: 0.25s;
-  box-shadow: inset 0 0 14px rgba(4,255,0,0.1);
+  transition: 0.2s;
+  box-shadow: inset 0 0 18px rgba(4,255,0,0.05);
 }
 
 .console-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 28px rgba(4,255,0,0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(4,255,0,0.4);
 }
 
 .console-card img {
   width: 100%;
-  border-radius: 12px;
+  height: 110px;
+  object-fit: contain;
+  background: #020502;
+  border-radius: 10px;
+  margin-bottom: 12px;
 }
 
 .console-card span {
-  display: block;
-  margin-top: 8px;
-  font-family: Orbitron;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.9rem;
 }
 
-/* ===== SEARCH + FILTERS ===== */
-.controls {
+/* ===== SEARCH + FILTER ===== */
+.search-wrap {
+  padding: 20px 30px 0;
   display: none;
-  padding: 16px;
-  gap: 12px;
+}
+
+.search-wrap input {
+  width: 100%;
+  max-width: 420px;
+  background: #020502;
+  color: var(--neon);
+  border: 1px solid rgba(4,255,0,0.4);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.category-filter {
+  display: none;
+  gap: 10px;
+  padding: 14px 30px;
   flex-wrap: wrap;
 }
 
-.controls input {
-  flex: 1;
-  padding: 10px;
-  background: #020502;
-  border: 1px solid rgba(4,255,0,0.4);
-  color: var(--neon);
-  border-radius: 10px;
-}
-
-.controls button {
-  padding: 8px 12px;
+.category-filter button {
   background: #020502;
   color: var(--neon);
-  border-radius: 8px;
   border: 1px solid rgba(4,255,0,0.3);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: "Orbitron", sans-serif;
   cursor: pointer;
 }
 
-.controls button.active {
-  box-shadow: 0 0 10px var(--neon);
+.category-filter button.active {
+  box-shadow: 0 0 8px var(--neon);
 }
 
-/* ===== GRID ===== */
+/* ===== GAME GRID ===== */
+.container {
+  padding: 20px 30px 40px;
+  display: none;
+}
+
 .grid {
-  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
 }
 
-/* ===== GAME CARD ===== */
 .card {
   background: linear-gradient(180deg, #0f1d0f, var(--card));
+  border: 1px solid rgba(4,255,0,0.3);
   border-radius: 16px;
-  padding: 12px;
+  padding: 14px;
+  cursor: pointer;
   transition: 0.2s;
-  position: relative;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 22px rgba(4,255,0,0.5);
+  box-shadow: 0 0 22px rgba(4,255,0,0.4);
 }
 
 .card img {
   width: 100%;
   border-radius: 12px;
-}
-
-.favorite {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.favorite.active {
-  color: gold;
-  text-shadow: 0 0 10px gold;
+  margin-bottom: 10px;
 }
 
 .console-tag {
-  font-size: 0.65rem;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(4,255,0,0.5);
   display: inline-block;
-  margin: 6px 0;
-  font-family: Orbitron;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 600px) {
-  nav h1 { font-size: 1rem; }
-  .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  font-size: 0.65rem;
+  padding: 4px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(4,255,0,0.5);
+  font-family: "Orbitron", sans-serif;
 }
 </style>
 </head>
@@ -173,108 +177,109 @@ nav h1 {
 
 <nav>
   <img src="https://i.ibb.co/WmCg0yY/catstare.png">
-  <h1>Tcaw Retro Games</h1>
+  <h1>Tcaw Retro Games (BETA)</h1>
 </nav>
 
-<audio id="startupSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5f32b6b3b6.mp3"></audio>
-
+<!-- CONSOLE SELECT -->
 <div class="console-select" id="consoleSelect">
   <h2>Choose Your Console</h2>
+
   <div class="console-grid">
     <div class="console-card" onclick="selectConsole('ALL')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Gamepad_icon.svg">
+      <img src="https://i.imgur.com/0Z8FQYF.png">
       <span>All Games</span>
     </div>
+
     <div class="console-card" onclick="selectConsole('NES')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/NES-Console-Set.png">
-      <span>NES</span>
+      <img src="https://i.imgur.com/fzYqZzN.png">
+      <span>Nintendo Entertainment System</span>
     </div>
+
     <div class="console-card" onclick="selectConsole('SNES')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/SNES-Mod1-Console-Set.png">
-      <span>SNES</span>
+      <img src="https://i.imgur.com/6kZQ6nD.png">
+      <span>Super Nintendo</span>
     </div>
+
     <div class="console-card" onclick="selectConsole('GENESIS')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Sega-Genesis-Mk2-Console-Set.png">
-      <span>Genesis</span>
+      <img src="https://i.imgur.com/lY3Hk5O.png">
+      <span>Sega Genesis</span>
     </div>
+
     <div class="console-card" onclick="selectConsole('ARCADE')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Arcade_machine.svg">
+      <img src="https://i.imgur.com/6YVQ6wL.png">
       <span>Arcade</span>
     </div>
   </div>
 </div>
 
-<div class="controls" id="controls">
-  <input placeholder="Search games..." oninput="filterGames(this.value)">
-  <button onclick="showAll()">All</button>
-  <button onclick="showFavorites()">⭐ Favorites</button>
+<!-- SEARCH -->
+<div class="search-wrap" id="searchWrap">
+  <input type="text" placeholder="Search games..." oninput="filterGames(this.value)">
 </div>
 
-<div class="grid" id="gameGrid"></div>
+<!-- CATEGORY FILTER -->
+<div class="category-filter" id="categoryFilter"></div>
+
+<!-- GAME GRID -->
+<div class="container" id="gameContainer">
+  <div class="grid" id="gameGrid"></div>
+</div>
 
 <script>
-let games = [];
-let activeConsole = localStorage.getItem("console") || null;
-let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+let allGames = [];
+let currentConsole = "ALL";
 
 fetch("games.json")
   .then(r => r.json())
   .then(d => {
-    games = d.games;
-    if (activeConsole) selectConsole(activeConsole, true);
+    allGames = d.games;
+    renderCategories(allGames);
   });
 
-function selectConsole(c, silent=false) {
-  activeConsole = c;
-  localStorage.setItem("console", c);
+function selectConsole(console) {
+  currentConsole = console;
   document.getElementById("consoleSelect").style.display = "none";
-  document.getElementById("controls").style.display = "flex";
-  if (!silent) document.getElementById("startupSound").play();
-  render();
+  document.getElementById("searchWrap").style.display = "block";
+  document.getElementById("categoryFilter").style.display = "flex";
+  document.getElementById("gameContainer").style.display = "block";
+  filterGames("");
 }
 
-function render(list = games) {
+function renderGames(games) {
   const grid = document.getElementById("gameGrid");
   grid.innerHTML = "";
-  list.filter(g => activeConsole==="ALL" || g.console===activeConsole)
-      .forEach(g => {
-    const fav = favorites.includes(g.name);
-    const d = document.createElement("div");
-    d.className = "card";
-    d.innerHTML = `
-      <div class="favorite ${fav?'active':''}" onclick="toggleFav(event,'${g.name}')">♥</div>
+  games.forEach(g => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => location.href = g.url;
+    card.innerHTML = `
       <span class="console-tag">${g.console}</span>
       <img src="${g.icon}">
-      <h3>${g.displayName}</h3>
+      <h2>${g.displayName}</h2>
       <p>${g.description}</p>
     `;
-    d.onclick = e => { if(!e.target.classList.contains("favorite")) location.href=g.url };
-    grid.appendChild(d);
+    grid.appendChild(card);
   });
 }
 
-function filterGames(q) {
-  q=q.toLowerCase();
-  render(games.filter(g =>
-    g.displayName.toLowerCase().includes(q) ||
-    g.description.toLowerCase().includes(q)
-  ));
+function filterGames(query) {
+  let filtered = allGames.filter(g =>
+    (currentConsole === "ALL" || g.console === currentConsole) &&
+    (g.displayName.toLowerCase().includes(query.toLowerCase()))
+  );
+  renderGames(filtered);
 }
 
-function toggleFav(e,name){
-  e.stopPropagation();
-  favorites.includes(name)
-    ? favorites=favorites.filter(f=>f!==name)
-    : favorites.push(name);
-  localStorage.setItem("favorites",JSON.stringify(favorites));
-  render();
+function renderCategories(games) {
+  const cats = [...new Set(games.map(g => g.category))];
+  const wrap = document.getElementById("categoryFilter");
+  cats.forEach(c => {
+    const b = document.createElement("button");
+    b.textContent = c;
+    b.onclick = () => renderGames(allGames.filter(g => g.category === c));
+    wrap.appendChild(b);
+  });
 }
-
-function showFavorites(){
-  render(games.filter(g=>favorites.includes(g.name)));
-}
-
-function showAll(){ render(); }
 </script>
 
 </body>
