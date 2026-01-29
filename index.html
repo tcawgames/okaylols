@@ -22,7 +22,7 @@ body {
   color: var(--neon);
 }
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 nav {
   display: flex;
   align-items: center;
@@ -43,7 +43,7 @@ nav h1 {
   letter-spacing: 2px;
 }
 
-/* ===== CONSOLE SELECT ===== */
+/* CONSOLE SELECT */
 .console-select {
   text-align: center;
   padding: 40px 20px;
@@ -67,10 +67,9 @@ nav h1 {
   background: linear-gradient(180deg, #0f1d0f, var(--card));
   border: 1px solid rgba(4,255,0,0.3);
   border-radius: 16px;
-  padding: 16px;
+  padding: 18px;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: inset 0 0 18px rgba(4,255,0,0.05);
 }
 
 .console-card:hover {
@@ -78,21 +77,18 @@ nav h1 {
   box-shadow: 0 0 22px rgba(4,255,0,0.4);
 }
 
-.console-card img {
-  width: 100%;
-  height: 110px;
-  object-fit: contain;
-  background: #020502;
-  border-radius: 10px;
+.console-icon {
+  font-size: 3.2rem;
   margin-bottom: 12px;
+  filter: drop-shadow(0 0 12px rgba(4,255,0,0.5));
 }
 
 .console-card span {
   font-family: "Orbitron", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-/* ===== SEARCH + FILTER ===== */
+/* SEARCH + FILTER */
 .search-wrap {
   padding: 20px 30px 0;
   display: none;
@@ -125,11 +121,7 @@ nav h1 {
   cursor: pointer;
 }
 
-.category-filter button.active {
-  box-shadow: 0 0 8px var(--neon);
-}
-
-/* ===== GAME GRID ===== */
+/* GAME GRID */
 .container {
   padding: 20px 30px 40px;
   display: none;
@@ -186,27 +178,27 @@ nav h1 {
 
   <div class="console-grid">
     <div class="console-card" onclick="selectConsole('ALL')">
-      <img src="https://i.imgur.com/0Z8FQYF.png">
+      <div class="console-icon">🎮</div>
       <span>All Games</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('NES')">
-      <img src="https://i.imgur.com/fzYqZzN.png">
-      <span>Nintendo Entertainment System</span>
+      <div class="console-icon">🟥</div>
+      <span>NES</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('SNES')">
-      <img src="https://i.imgur.com/6kZQ6nD.png">
+      <div class="console-icon">🟪</div>
       <span>Super Nintendo</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('GENESIS')">
-      <img src="https://i.imgur.com/lY3Hk5O.png">
+      <div class="console-icon">🔵</div>
       <span>Sega Genesis</span>
     </div>
 
     <div class="console-card" onclick="selectConsole('ARCADE')">
-      <img src="https://i.imgur.com/6YVQ6wL.png">
+      <div class="console-icon">🕹️</div>
       <span>Arcade</span>
     </div>
   </div>
@@ -263,9 +255,10 @@ function renderGames(games) {
 }
 
 function filterGames(query) {
-  let filtered = allGames.filter(g =>
+  const q = query.toLowerCase();
+  const filtered = allGames.filter(g =>
     (currentConsole === "ALL" || g.console === currentConsole) &&
-    (g.displayName.toLowerCase().includes(query.toLowerCase()))
+    g.displayName.toLowerCase().includes(q)
   );
   renderGames(filtered);
 }
@@ -276,7 +269,12 @@ function renderCategories(games) {
   cats.forEach(c => {
     const b = document.createElement("button");
     b.textContent = c;
-    b.onclick = () => renderGames(allGames.filter(g => g.category === c));
+    b.onclick = () => renderGames(
+      allGames.filter(g =>
+        (currentConsole === "ALL" || g.console === currentConsole) &&
+        g.category === c
+      )
+    );
     wrap.appendChild(b);
   });
 }
