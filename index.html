@@ -77,16 +77,26 @@ nav h1 {
   box-shadow: 0 0 22px rgba(4,255,0,0.4);
 }
 
-.console-icon img {
-  width: 120px;
-  max-width: 100%;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 12px rgba(4,255,0,0.45));
-}
-
 .console-icon {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 130px;
+  margin-bottom: 12px;
+}
+
+/* IMAGE ICONS */
+.console-icon img {
+  width: 120px;
+  max-width: 100%;
+  filter: drop-shadow(0 0 12px rgba(4,255,0,0.45));
+}
+
+/* BIG ICONS FOR ALL + ARCADE */
+.big-icon {
+  font-size: 5rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 14px rgba(4,255,0,0.6));
 }
 
 .console-card span {
@@ -94,7 +104,7 @@ nav h1 {
   font-size: 0.95rem;
 }
 
-/* SEARCH + FILTER */
+/* SEARCH */
 .search-wrap {
   padding: 20px 30px 0;
   display: none;
@@ -110,6 +120,7 @@ nav h1 {
   padding: 10px 14px;
 }
 
+/* CATEGORY FILTER */
 .category-filter {
   display: none;
   gap: 10px;
@@ -178,53 +189,58 @@ nav h1 {
   <h1>Tcaw Retro Games (BETA)</h1>
 </nav>
 
-<!-- CONSOLE SELECT -->
 <div class="console-select" id="consoleSelect">
   <h2>Choose Your Console</h2>
 
   <div class="console-grid">
+    <!-- ALL GAMES -->
     <div class="console-card" onclick="selectConsole('ALL')">
-      <div class="console-icon">🎮</div>
+      <div class="console-icon">
+        <div class="big-icon">🎮</div>
+      </div>
       <span>All Games</span>
     </div>
 
+    <!-- NES -->
     <div class="console-card" onclick="selectConsole('NES')">
       <div class="console-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/NES-Console-Set.png" alt="NES">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/NES-Console-Set.png">
       </div>
       <span>NES</span>
     </div>
 
+    <!-- SNES -->
     <div class="console-card" onclick="selectConsole('SNES')">
       <div class="console-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SNES-Mod1-Console-Set.png" alt="SNES">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/SNES-Mod1-Console-Set.png">
       </div>
       <span>Super Nintendo</span>
     </div>
 
+    <!-- GENESIS -->
     <div class="console-card" onclick="selectConsole('GENESIS')">
       <div class="console-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Sega-Genesis-Mod1-Set.png" alt="Genesis">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Sega-Genesis-Mod1-Set.png">
       </div>
       <span>Sega Genesis</span>
     </div>
 
+    <!-- ARCADE -->
     <div class="console-card" onclick="selectConsole('ARCADE')">
-      <div class="console-icon">🕹️</div>
+      <div class="console-icon">
+        <div class="big-icon">🕹️</div>
+      </div>
       <span>Arcade</span>
     </div>
   </div>
 </div>
 
-<!-- SEARCH -->
 <div class="search-wrap" id="searchWrap">
   <input type="text" placeholder="Search games..." oninput="filterGames(this.value)">
 </div>
 
-<!-- CATEGORY FILTER -->
 <div class="category-filter" id="categoryFilter"></div>
 
-<!-- GAME GRID -->
 <div class="container" id="gameContainer">
   <div class="grid" id="gameGrid"></div>
 </div>
@@ -268,17 +284,17 @@ function renderGames(games) {
 
 function filterGames(query) {
   const q = query.toLowerCase();
-  const filtered = allGames.filter(g =>
-    (currentConsole === "ALL" || g.console === currentConsole) &&
-    g.displayName.toLowerCase().includes(q)
+  renderGames(
+    allGames.filter(g =>
+      (currentConsole === "ALL" || g.console === currentConsole) &&
+      g.displayName.toLowerCase().includes(q)
+    )
   );
-  renderGames(filtered);
 }
 
 function renderCategories(games) {
-  const cats = [...new Set(games.map(g => g.category))];
   const wrap = document.getElementById("categoryFilter");
-  cats.forEach(c => {
+  [...new Set(games.map(g => g.category))].forEach(c => {
     const b = document.createElement("button");
     b.textContent = c;
     b.onclick = () => renderGames(
