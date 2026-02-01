@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ms. Pac-Man | Tcaw Retro Games</title>
+
+<!-- Favicon -->
+<link rel="icon" href="https://i.ibb.co/WmCg0yY/catstare.png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --neon: #1eff00;
+  --bg: #050805;
+  --panel: #0b140b;
+  --panel-alt: #0e180e;
+}
+
+/* ===== Reset & Body ===== */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "JetBrains Mono", monospace;
+  background: radial-gradient(circle at top, #0d1a0d, var(--bg));
+  color: var(--neon);
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(30,255,0,0.3);
+  background: rgba(5,8,5,0.85);
+  backdrop-filter: blur(6px);
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.nav-left img {
+  width: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(30,255,0,0.6);
+}
+.nav-left span {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: calc(100% - 64px);
+}
+
+.game-shell {
+  width: 100%;
+  max-width: 960px;
+  background: linear-gradient(180deg, var(--panel-alt), var(--panel));
+  border-radius: 16px;
+  border: 1px solid rgba(30,255,0,0.35);
+  box-shadow:
+    0 0 25px rgba(30,255,0,0.2),
+    inset 0 0 18px rgba(30,255,0,0.05);
+  padding: 14px;
+}
+
+.game-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* ===== GAME FRAME ===== */
+#game {
+  width: 100%;
+  height: 540px;
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  opacity: 0.55;
+  text-align: center;
+}
+
+/* ===== AD CORNER ===== */
+.ad-corner {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9999;
+  filter: drop-shadow(0 0 10px rgba(30,255,0,0.35));
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-left" onclick="goHome()">
+    <img src="https://i.ibb.co/WmCg0yY/catstare.png" alt="Tcaw">
+    <span>Tcaw Retro Games (BETA)</span>
+  </div>
+</nav>
+
+<script>
+function goHome() {
+  window.location.href = "https://tcaw.live";
+}
+</script>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main">
+  <div class="game-shell">
+    <div class="game-title">Ms. Pac-Man • Arcade</div>
+
+    <div id="game"></div>
+
+    <div class="footer">
+      Arrow Keys / D-Pad • Z / X • Enter = Start
+    </div>
+  </div>
+</div>
+
+<!-- ===== EmulatorJS (Arcade) ===== -->
+<script>
+  EJS_player = "#game";
+  EJS_core = "arcade";
+  EJS_gameName = "Ms. Pac-Man";
+  EJS_color = "#1eff00";
+  EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+  EJS_gameUrl = "roms/mspacman.zip";
+  // No BIOS required
+</script>
+
+<script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+
+<!-- ===== Corner Ad ===== -->
+<div class="ad-corner">
+  <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+  <ins class="eas6a97888e31" data-zoneid="5835098"></ins>
+  <script>
+    (AdProvider = window.AdProvider || []).push({ "serve": {} });
+  </script>
+</div>
+
+</body>
+</html>
