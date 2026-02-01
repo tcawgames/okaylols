@@ -48,7 +48,7 @@
     {
       "name": "pac-man",
       "displayName": "Pac-Man",
-      "icon": "https://upload.wikimedia.org/wikipedia/en/1/16/Pac_flyer.png",
+      "icon": "https://i.ibb.co/sdD1H88J/image.png",
       "description": "Iconic Namco arcade maze game featuring Pac-Man and the ghosts",
       "url": "pac-man",
       "category": "retro",
@@ -57,7 +57,7 @@
     {
       "name": "ms-pac-man",
       "displayName": "Ms. Pac-Man",
-      "icon": "https://upload.wikimedia.org/wikipedia/en/5/59/Ms._Pac-Man_Flyer.png",
+      "icon": "https://i.ibb.co/4Ry2kBF6/image.png",
       "description": "Improved arcade classic with new mazes, faster gameplay, and Ms. Pac-Man",
       "url": "ms-pac-man",
       "category": "retro",
